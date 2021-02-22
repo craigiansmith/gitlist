@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update  and upgrade packages
+      apt:
+        update_cache: yes
+        upgrade: safe
+      register: apt
+    - name: Install Python3
+      apt:
+        name: python3
+        state: present
+    - name: Create python symlink
+      file:
+        src: "/usr/bin/python3"
+        dest:  "/usr/local/bin/python"
+        state: link
+    - apt:
+        name: python3-pip
+        state: present
+    - pip: 
+        name: pytest

@@ -1,0 +1,6 @@
+[submodule "tests/fixtures/repos/first"]
+	path = tests/fixtures/repos/first
+	url = ./
+[submodule "tests/fixtures/repos/second"]
+	path = tests/fixtures/repos/second
+	url = ./
