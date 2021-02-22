@@ -20,11 +20,13 @@ class GitList:
             raise NotReadyError("Git is not installed")
 
     def find(self, start_directory):
+        found = False
         for directory, subdirs, files in os.walk(start_directory):
             if ".git" in subdirs:
+                found = True
                 print("{d}/ is a git repo".format(d=directory))
 
-        return True
+        return found
 
 if __name__ == "__main__":
     import sys
