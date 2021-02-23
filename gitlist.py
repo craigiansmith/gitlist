@@ -28,9 +28,22 @@ class GitList:
 
         return found
 
+    def uncommitted_change(self, directory):
+        cwd = os.getcwd()
+        os.chdir(directory)
+        result = subprocess.run(['git', 'status'], capture_output=True, text=True)
+        os.chdir(cwd)
+        if 'modified' in result.stdout or 'untracked' in result.stdout:
+            return True
+        else:
+            return False
+
 if __name__ == "__main__":
     import sys
-    directory = sys.argv[1]
+    try:
+        directory = sys.argv[1]
+    except IndexError:
+        directory = '.'
     gl = GitList()
     gl.ready()
     gl.find(directory)
