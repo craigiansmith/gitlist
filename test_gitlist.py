@@ -23,13 +23,8 @@ def test_are_there_untracked_changes():
     assert gl.uncommitted_change(TARGET_DIR)
     with open(TARGET_FILE, 'w') as f:
         f.write(original_filetext)
-    
-
-
 
 def test_there_are_no_unommitted_changes():
     gl = GitList()
     TARGET_DIR = Path('tests', 'fixtures', 'repos', 'first')
     assert not gl.uncommitted_change(TARGET_DIR)
-
-
