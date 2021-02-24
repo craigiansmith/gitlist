@@ -25,6 +25,8 @@ class GitList:
             if ".git" in subdirs:
                 found = True
                 print("{d}/ is a git repo".format(d=directory))
+                if self.uncommitted_change(directory):
+                    print(' -- with uncommitted changes')
 
         return found
 
