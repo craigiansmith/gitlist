@@ -1,6 +1,10 @@
 [submodule "tests/fixtures/repos/first"]
 	path = tests/fixtures/repos/first
-	url = ./
+	url = git@github.com:craigiansmith/gitlist_test_repo_1.git
 [submodule "tests/fixtures/repos/second"]
 	path = tests/fixtures/repos/second
-	url = ./
+	url = git@github.com:craigiansmith/gitlist_test_repo_2.git
+[submodule "tests/fixtures/repos/third"]
+	url = git@github.com:craigiansmith/gitlist_test_repo_3.git
+[submodule "tests/fixtures/repos/fourth"]
+	url = git@github.com:craigiansmith/gitlist_test_repo_4.git
