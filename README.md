@@ -14,7 +14,7 @@ PATH, and make it executable.
 Clone this repo, then run the following commands:
 
 ```
-    pipenv install
+    pipenv install --dev
     pipenv shell
     python -m pytest
 ```
