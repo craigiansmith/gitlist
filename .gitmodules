@@ -5,6 +5,8 @@
 	path = tests/fixtures/repos/second
 	url = git@github.com:craigiansmith/gitlist_test_repo_2.git
 [submodule "tests/fixtures/repos/third"]
+	path = tests/fixtures/repos/third
 	url = git@github.com:craigiansmith/gitlist_test_repo_3.git
 [submodule "tests/fixtures/repos/fourth"]
+	path = tests/fixtures/repos/fourth
 	url = git@github.com:craigiansmith/gitlist_test_repo_4.git
