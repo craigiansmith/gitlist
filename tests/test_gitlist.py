@@ -1,4 +1,4 @@
-from gitlist import GitList
+from src.gitlist.gitlist import GitList
 from pathlib import Path
 
 def test_git_installed():
