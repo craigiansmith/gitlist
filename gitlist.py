@@ -27,6 +27,8 @@ class GitList:
                 print("{d}/ is a git repo".format(d=directory))
                 if self.uncommitted_change(directory):
                     print(' -- with uncommitted changes')
+                if self.unpushed_changes(directory):
+                    print(' -- with unpushed local changes')
 
         return found
 
@@ -36,6 +38,16 @@ class GitList:
         result = subprocess.run(['git', 'status'], capture_output=True, text=True)
         os.chdir(cwd)
         if 'modified' in result.stdout or 'untracked' in result.stdout:
+            return True
+        else:
+            return False
+
+    def unpushed_changes(self, directory):
+        cwd = os.getcwd()
+        os.chdir(directory)
+        result = subprocess.run(['git', 'status'], capture_output=True, text=True)
+        os.chdir(cwd)
+        if 'ahead' in result.stdout:
             return True
         else:
             return False

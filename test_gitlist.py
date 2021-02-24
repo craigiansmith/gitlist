@@ -28,3 +28,14 @@ def test_there_are_no_unommitted_changes():
     gl = GitList()
     TARGET_DIR = Path('tests', 'fixtures', 'repos', 'first')
     assert not gl.uncommitted_change(TARGET_DIR)
+
+def test_are_there_local_unpushed_changes():
+    gl = GitList()
+    TARGET_DIR = Path('tests', 'fixtures', 'repos', 'first')
+    assert gl.unpushed_changes(TARGET_DIR)
+
+def test_there_are_no_unpushed_changes():
+    gl = GitList()
+    TARGET_DIR = Path('tests', 'fixtures', 'repos', 'second')
+    assert not gl.unpushed_changes(TARGET_DIR)
+
