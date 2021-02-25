@@ -22,7 +22,7 @@ class GitList:
     def find(self, start_directory):
         found = False
         for directory, subdirs, files in os.walk(start_directory):
-            if ".git" in subdirs:
+            if '.git' in subdirs or '.git' in files:
                 found = True
                 print("{d}/ is a git repo".format(d=directory))
                 if self.uncommitted_change(directory):
