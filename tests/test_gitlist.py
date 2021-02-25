@@ -44,14 +44,14 @@ def remote_not_configured(directory):
     result = 'ahead' in subprocess.run(['git', 'branch', '-vv'], capture_output=True,
             text=True).stdout
     os.chdir(cwd)
-    return result
+    return not result
 
 def configure_remote_tracking_repo(directory):
     cwd = os.getcwd()
     os.chdir(directory)
     subprocess.run(['git', 'remote', 'add', 'upstream',
         'git@github.com:craigiansmith/gitlist_test_repo_4.git'])
-    subprocess.run(['git', 'fetch', 'upsteam'])
+    subprocess.run(['git', 'fetch', 'upstream'])
     subprocess.run(['git', 'checkout', 'master'])
     subprocess.run(['git', 'branch', '-u', 'upstream/master'])
     os.chdir(cwd)
