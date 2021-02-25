@@ -1,5 +1,7 @@
 from src.gitlist.gitlist import GitList
 from pathlib import Path
+import os
+import subprocess
 
 def test_git_installed():
     # When run, gitlist should fail if git isn't installed
@@ -32,10 +34,28 @@ def test_there_are_no_unommitted_changes():
 def test_are_there_local_unpushed_changes():
     gl = GitList()
     TARGET_DIR = Path('tests', 'fixtures', 'repos', 'first')
+    if remote_not_configured(TARGET_DIR):
+        configure_remote_tracking_repo(TARGET_DIR)
     assert gl.unpushed_changes(TARGET_DIR)
+
+def remote_not_configured(directory):
+    cwd = os.getcwd()
+    os.chdir(directory)
+    result = 'ahead' in subprocess.run(['git', 'branch', '-vv'], capture_output=True,
+            text=True).stdout
+    os.chdir(cwd)
+    return result
+
+def configure_remote_tracking_repo(directory):
+    cwd = os.getcwd()
+    os.chdir(directory)
+    subprocess.run(['git', 'remote', 'add', 'upstream',
+        'git@github.com:craigiansmith/gitlist_test_repo_4.git'])
+    subprocess.run(['git', 'fetch', 'upsteam'])
+    subprocess.run(['git', 'branch', '-u', 'upstream/master'])
+    os.chdir(cwd)
 
 def test_there_are_no_unpushed_changes():
     gl = GitList()
     TARGET_DIR = Path('tests', 'fixtures', 'repos', 'second')
     assert not gl.unpushed_changes(TARGET_DIR)
-
