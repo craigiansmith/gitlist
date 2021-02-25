@@ -11,9 +11,10 @@ PATH, and make it executable.
 
 ## Testing
 
-Clone this repo, then run the following commands:
+Run the following commands:
 
 ```
+    git clone --recurse-submodules git@github.com:craigiansmith/gitlist.git
     pipenv install --dev
     pipenv shell
     python -m pytest
