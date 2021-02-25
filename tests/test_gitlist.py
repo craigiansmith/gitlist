@@ -52,6 +52,7 @@ def configure_remote_tracking_repo(directory):
     subprocess.run(['git', 'remote', 'add', 'upstream',
         'git@github.com:craigiansmith/gitlist_test_repo_4.git'])
     subprocess.run(['git', 'fetch', 'upsteam'])
+    subprocess.run(['git', 'checkout', 'master'])
     subprocess.run(['git', 'branch', '-u', 'upstream/master'])
     os.chdir(cwd)
 
