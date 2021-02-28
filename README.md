@@ -4,6 +4,8 @@ _Displays the state of your local git repos_
 If you've ever wanted a quick and easy overview of your git repos from the
 command line - **GitList** - is for you.
 
+![](images/gitlist-output.jpg)
+
 ## Installing
 
 At present, clone this repo and then move _gitlist.py_ to a directory on your
