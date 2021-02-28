@@ -1,4 +1,4 @@
-from src.gitlist.gitlist import GitList
+from src.gitlist.gitlist import GitList, Display
 from pathlib import Path
 import os
 import subprocess
@@ -60,3 +60,25 @@ def test_there_are_no_unpushed_changes():
     gl = GitList()
     TARGET_DIR = Path('tests', 'fixtures', 'repos', 'second')
     assert not gl.unpushed_changes(TARGET_DIR)
+
+def test_initialise_display():
+    display = Display('console')
+
+def test_start_a_message():
+    display = Display('console')
+    s = 'This is the start of the message'
+    display.msg(s, 1)
+    assert s in display.flush()
+
+def test_add_to_a_msg():
+    display = Display('console')
+    s = 'Start message'
+    s2 = '-- continue message'
+    s3 = '-- continue further'
+    display.msg(s, 1)
+    display.msg(s2, 2)
+    display.msg(s3, 3)
+    output = display.flush()
+    assert s in output
+    assert s2 in output
+    assert s3 in output

@@ -10,6 +10,35 @@ import os
 class NotReadyError(Exception):
     pass
 
+class Display:
+    def __init__(self, mode):
+        self.mode = mode
+        self.m = None
+        self.width1 = 60
+        self.width = 30
+        self.col2 = False
+
+    def msg(self, m, column):
+        col2 = False
+        if column == 1:
+            spaces = ' ' * (self.width1 - len(m))
+            self.m = m + spaces
+        elif column == 2:
+            spaces = ' ' * (self.width - len(m))
+            self.m += m + spaces 
+            self.col2 = True
+        elif column == 3 and self.col2:
+            self.m += m
+        elif column == 3 and not self.col2:
+            self.m += ' ' * self.width
+            self.m += m
+
+    def flush(self):
+        output = self.m
+        self.m = None
+        self.col2 = False
+        return output
+
 class GitList:
     def ready(self):
         # Assert preconditions: git installed
@@ -20,15 +49,19 @@ class GitList:
             raise NotReadyError("Git is not installed")
 
     def find(self, start_directory):
+        out = Display('console')
         found = False
         for directory, subdirs, files in os.walk(start_directory):
+            if 'vendor' in subdirs:
+                subdirs.remove('vendor')
             if '.git' in subdirs or '.git' in files:
                 found = True
-                print("{d}/ is a git repo".format(d=directory))
+                out.msg("{d}/".format(d=directory), 1)
                 if self.uncommitted_change(directory):
-                    print(' -- with uncommitted changes')
+                    out.msg(' -- has uncommitted changes', 2)
                 if self.unpushed_changes(directory):
-                    print(' -- with unpushed local changes')
+                    out.msg(' -- has unpushed local changes', 3)
+                print(out.flush())
 
         return found
 
