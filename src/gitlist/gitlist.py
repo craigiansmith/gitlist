@@ -22,14 +22,18 @@ class Display:
         col2 = False
         if column == 1:
             spaces = ' ' * (self.width1 - len(m))
+            m = "\33[0;32m" + m + "\33[0m"
             self.m = m + spaces
         elif column == 2:
             spaces = ' ' * (self.width - len(m))
+            m = "\33[1;33m" + m + "\33[0m"
             self.m += m + spaces 
             self.col2 = True
         elif column == 3 and self.col2:
+            m = "\33[1;33m" + m + "\33[0m"
             self.m += m
         elif column == 3 and not self.col2:
+            m = "\33[1;33m" + m + "\33[0m"
             self.m += ' ' * self.width
             self.m += m
 
