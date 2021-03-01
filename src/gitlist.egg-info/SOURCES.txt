@@ -1,0 +1,11 @@
+COPYING
+MANIFEST.in
+README.md
+setup.py
+src/gitlist/__init__.py
+src/gitlist/gitlist.py
+src/gitlist.egg-info/PKG-INFO
+src/gitlist.egg-info/SOURCES.txt
+src/gitlist.egg-info/dependency_links.txt
+src/gitlist.egg-info/entry_points.txt
+src/gitlist.egg-info/top_level.txt

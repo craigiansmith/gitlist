@@ -92,6 +92,17 @@ class GitList:
         else:
             return False
 
+    def main():
+        import sys
+
+        try:
+            directory = sys.argv[1]
+        except IndexError:
+            directory = "."
+        gl = GitList()
+        gl.ready()
+        gl.find(directory)
+
 
 if __name__ == "__main__":
     import sys

@@ -1,0 +1,9 @@
+COPYING
+MANIFEST.in
+README.md
+setup.py
+gitlist.egg-info/PKG-INFO
+gitlist.egg-info/SOURCES.txt
+gitlist.egg-info/dependency_links.txt
+gitlist.egg-info/entry_points.txt
+gitlist.egg-info/top_level.txt
